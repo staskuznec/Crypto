@@ -6,6 +6,14 @@
      <input matInput (input)="applyFilter($event)" placeholder="Filter">
   </mat-form-field>
   </ng-container>
+    <ng-container class="refresh-interval">
+      <span class="refresh-text">Refresh Interval: </span>
+      <mat-form-field>
+        <mat-select [(value)]="refreshInterval" (selectionChange)="onIntervalChange($event.value)">
+          <mat-option *ngFor="let interval of refreshIntervals" [value]="interval.value">{{ interval.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
   </div>
 
   <mat-table [dataSource]="dataSource" matSort>
