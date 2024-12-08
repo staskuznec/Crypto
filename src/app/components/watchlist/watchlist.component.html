@@ -1,0 +1,43 @@
+<div class="mat-elevation-z8">
+  <div class="header-container">
+  <ng-container class="filter-form-field">
+    <span class="search-text">Search: </span>
+  <mat-form-field >
+     <input matInput (input)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+  </ng-container>
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let crypto"> <img class="coin-logo" [src]="crypto.logo" alt="{{crypto.name}} logo" width="32"> {{crypto.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let crypto"> {{crypto.symbol}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+      <mat-cell *matCellDef="let crypto"> {{crypto.price | currency}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="marketCap">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Market Cap </mat-header-cell>
+      <mat-cell *matCellDef="let crypto"> {{crypto.marketCap | currency}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="supply">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Supply </mat-header-cell>
+      <mat-cell *matCellDef="let crypto"> {{crypto.supply | number}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100, 150, 200]" pageSize="20" showFirstLastButtons></mat-paginator>
+</div>

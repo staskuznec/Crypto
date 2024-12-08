@@ -1,0 +1,28 @@
+.logo-column {
+  max-width: 66px;
+  width: 64px;
+  text-align: center;
+}
+
+.coin-logo{
+  margin: 10px;
+}
+.header-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.filter-form-field {
+  margin-left: auto;
+
+}
+
+.filter-form-field input {
+  height: 30px;
+
+}
+.search-text{
+  margin: 10px;
+}

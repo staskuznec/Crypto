@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Router,RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'crypto';
+
+  public constructor(private router: Router) {}
+
+  public routeTo(target: string):void {
+    console.log('routeTo', target);
+    this.router.navigate([target]);
+  }
 }
