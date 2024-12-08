@@ -15,7 +15,6 @@ import {WatchListSettingsService} from '../../services/watch-list-service.servic
 import {Crypto} from '../../interfaces/crypto';
 
 
-
 @Component({
   selector: 'app-watchlist',
   templateUrl: './watchlist.component.html',
@@ -77,6 +76,10 @@ export class WatchlistComponent implements OnInit,AfterViewInit, OnDestroy {
             return item.marketCap ?? 0;
           case 'supply':
             return item.supply ?? 0;
+          case 'name':
+            return item.name ?? '';
+          case 'symbol':
+            return item.symbol ?? '';
           default:
             return  '';
         }
@@ -89,7 +92,7 @@ export class WatchlistComponent implements OnInit,AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     //this.sort.direction = 'desc'; // Устанавливаем направление сортировки
-    // Загружаем настройки из сервиса
+    // загружаем настройки из сервиса
     this.sort.active = this.wls.getSortColumn();
     this.sort.direction = this.wls.getSortDirection() as 'asc' | 'desc'| '';
     this.refreshInterval = this.wls.getRefreshInterval();

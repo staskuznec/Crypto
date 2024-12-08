@@ -13,7 +13,7 @@ import {MatButton} from '@angular/material/button';
 export class NotFoundComponent {
   constructor(private router: Router) {}
 
-  goHome() {
+  goHome():void {
     this.router.navigate(['/']);
   }
 }
