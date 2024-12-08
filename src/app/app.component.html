@@ -1,8 +1,6 @@
-<nav>
-  <ul>
-    <li><a (click)='routeTo("watchlist")'>Watchlist</a></li>
-    <li><a (click)='routeTo("converter")'>Converter</a></li>
-    <li><a (click)='routeTo("wallet")'>Wallet</a></li>
-  </ul>
-</nav>
+<mat-toolbar class="menu-bar">
+  <button mat-raised-button (click)="routeTo(routers.WATCHLIST)">Watchlist</button>
+  <button mat-raised-button (click)="routeTo(routers.CONVERTER)">Converter</button>
+  <button mat-raised-button (click)="routeTo(routers.WALLET)">Wallet</button>
+</mat-toolbar>
 <router-outlet></router-outlet>

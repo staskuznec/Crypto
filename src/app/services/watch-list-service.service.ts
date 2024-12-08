@@ -4,34 +4,34 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class WatchListServiceService {
+export class WatchListSettingsService {
   private sortColumnKey = 'sortColumn';
   private sortDirectionKey = 'sortDirection';
   private refreshIntervalKey = 'refreshInterval';
 
   constructor() {}
 
-  setSortColumn(column: string): void {
+  public setSortColumn(column: string): void {
     localStorage.setItem(this.sortColumnKey, column);
   }
 
-  getSortColumn(): string {
+  public getSortColumn(): string {
     return localStorage.getItem(this.sortColumnKey) || 'marketCap';
   }
 
-  setSortDirection(direction: 'asc' | 'desc'| ''): void {
+  public setSortDirection(direction: 'asc' | 'desc'| ''): void {
     localStorage.setItem(this.sortDirectionKey, direction);
   }
 
-  getSortDirection(): 'asc' | 'desc' {
+  public getSortDirection(): 'asc' | 'desc' {
     return (localStorage.getItem(this.sortDirectionKey) as 'asc' | 'desc' | '' ) || 'desc';
   }
 
-  setRefreshInterval(interval: number): void {
+  public setRefreshInterval(interval: number): void {
     localStorage.setItem(this.refreshIntervalKey, interval.toString());
   }
 
-  getRefreshInterval(): number {
+  public getRefreshInterval(): number {
     return parseInt(localStorage.getItem(this.refreshIntervalKey) || '0', 10);
   }
 }

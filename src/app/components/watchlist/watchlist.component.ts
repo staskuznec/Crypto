@@ -11,7 +11,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {Subject, takeUntil, interval} from 'rxjs';
 import {MatOption, MatSelect} from '@angular/material/select';
-import {WatchListServiceService} from '../../services/watch-list-service.service';
+import {WatchListSettingsService} from '../../services/watch-list-service.service';
+import {Crypto} from '../../interfaces/crypto';
 
 
 
@@ -56,7 +57,7 @@ export class WatchlistComponent implements OnInit,AfterViewInit, OnDestroy {
   constructor(
     private coinMarketCapService: CoinMarketCapService,
     private cdr: ChangeDetectorRef,
-    private wls: WatchListServiceService) {
+    private wls: WatchListSettingsService) {
   }
 
   ngOnInit(): void {
@@ -66,7 +67,7 @@ export class WatchlistComponent implements OnInit,AfterViewInit, OnDestroy {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.dataSource.sortingDataAccessor = (item, property) => {
+      this.dataSource.sortingDataAccessor = (item: Crypto, property: string): string | number   => {
         switch (property) {
           // долго мучался как сделать
           // по колонок price, marketCap и supply сортировка должна выполняться по числовым значениям.
@@ -77,7 +78,7 @@ export class WatchlistComponent implements OnInit,AfterViewInit, OnDestroy {
           case 'supply':
             return item.supply ?? 0;
           default:
-            return item[property] ?? '';
+            return  '';
         }
       };
       this.dataSource.sort = this.sort; // Применяем сортировку
@@ -122,7 +123,7 @@ export class WatchlistComponent implements OnInit,AfterViewInit, OnDestroy {
   }
 
   // функция для фильтрации таблицы по введенному значению
-  public applyFilter(event: Event) {
+  public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
