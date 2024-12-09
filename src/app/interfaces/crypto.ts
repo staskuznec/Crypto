@@ -7,3 +7,10 @@ export interface Crypto {
   supply: number;
   logo: string;
 }
+
+
+export interface CryptoHistory{
+  count: number;
+  currency: string;
+  logo: string;
+}
