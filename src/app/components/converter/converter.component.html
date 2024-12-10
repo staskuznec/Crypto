@@ -1,1 +1,72 @@
-<p>converter works!</p>
+<div class="button-container">
+  <button mat-icon-button color="accent" type="button" (click)="refreshRates()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" type="button" (click)="clearForm()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<form [formGroup]="conversionForm" (ngSubmit)="calculateConversion()">
+  <div class="form-container">
+    <div class="form-group">
+      <mat-form-field>
+        <div class="amount-input">
+        <mat-label>Amount to Convert</mat-label>
+        <input matInput formControlName="fromAmount" type="number" placeholder="Enter amount">
+        </div>
+      </mat-form-field>
+      <mat-form-field>
+    <div class="currency-selected">
+    <mat-label>From Currency</mat-label>
+    <mat-select formControlName="fromCurrency">
+      <mat-option *ngFor="let crypto of cryptocurrencies" [value]="crypto.symbol">
+        <img [src]="crypto.logo" alt="{{ crypto.name }}" width="20" height="20" style="margin-right: 8px;">
+        {{ crypto.name }} ({{ crypto.symbol }})
+      </mat-option>
+    </mat-select>
+    </div>
+
+  </mat-form-field>
+      <div *ngIf="topFromCurrencies.length > 0" class="currency-history-buttons">
+        <button *ngFor="let currency of topFromCurrencies" mat-raised-button (click)="setFromCurrency(currency.currency)">
+          <img [src]=currency.logo alt="{{ currency.currency }}" width="20" height="20">
+          {{ currency.currency}}
+        </button>
+      </div>
+
+    </div>
+
+    <button mat-icon-button color="primary" type="button" (click)="swapCurrencies()">
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
+
+    <div class="form-group">
+      <mat-form-field>
+        <div class="amount-input">
+        <mat-label>Converted Amount</mat-label>
+        <input matInput formControlName="toAmount" type="number" placeholder="Converted amount" readonly>
+        </div>
+      </mat-form-field>
+
+  <mat-form-field>
+    <div class="currency-selected">
+    <mat-label>To Currency</mat-label>
+    <mat-select formControlName="toCurrency">
+      <mat-option *ngFor="let crypto of cryptocurrencies" [value]="crypto.symbol">
+        <img [src]="crypto.logo" alt="{{ crypto.name }}" width="20" height="20" style="margin-right: 8px;">
+        {{ crypto.name }} ({{ crypto.symbol }})
+      </mat-option>
+    </mat-select>
+    </div>
+
+  </mat-form-field>
+      <div *ngIf="topToCurrencies.length > 0" class="currency-history-buttons">
+        <button *ngFor="let currency of topToCurrencies" mat-raised-button (click)="setToCurrency(currency.currency)">
+          <img [src]="currency.logo" alt="{{ currency.currency }}" width="20" height="20" >
+          {{ currency.currency }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
